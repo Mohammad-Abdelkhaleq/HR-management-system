@@ -8,6 +8,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
 
 </head>
 <!-- ############################################################################################################ -->
@@ -21,7 +24,42 @@
         </nav>
     </header>
     <!-- ######################################################################################################## -->
-    <main id="dom"></main>
+    <main id="dom">
+        <section>
+            <form action="" id="myForm">
+                <fieldset>
+                    <legend>employee information</legend>
+                    <label for="fullName">full name.</label><br>
+                    <input type="text" name="fullName" id="fullName"><br>
+                    <hr>
+                    <label for="Department"> Department </label><br>
+                    <select name="Department" id="Department"><br>
+                        <option value="Administration">Administration </option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Development">Development</option>
+                        <option value="Finance">Finance</option>
+                    </select><br>
+                    <hr>
+                    <label for="Level">Level </label><br>
+                    <select name="Level" id="Level"><br>
+                        <option value="Junior">Junior</option>
+                        <option value="Mid-Senior">Mid-Senior</option>
+                        <option value="Senior">Senior</option>
+                    </select><br>
+                    <hr>
+                    <label for="imageurl">image URL</label><br>
+                    <input type="text" name="imageurl" id="imageurl" src="./assets/personal-place-holder-image.png"
+                        alt="Submit" width="48" height="48"><br>
+                    <hr>
+                    <input type="submit" name="submit" id="submit" value="submit"><br>
+                </fieldset>
+            </form>
+        </section>
+        <section id="empCard">
+
+        </section>
+
+    </main>
     <!-- ######################################################################################################## -->
     <footer>
         <address>
@@ -36,22 +74,22 @@
         </div>
         <div class="social">
             <a href="https://www.reddit.com/" target="_blank">
-            <button class="icon-button">
-                <img class="social-media" src="./assets/redditlogo.png" alt="">
-            </button>
-        </a>
-        <a href="https://www.facebook.com/" target="_blank">
-            <button class="icon-button">
-                <img class="social-media" src="./assets/facebooklogo.png" alt="">
-            </button>
-        </a>
-        <a href="https://www.reddit.com/" target="_blank">
-            <button class="icon-button">
-                <img class="social-media" src="./assets/twitterlogo.png" alt="">
-            </button>
-        </a>
-        <span>all rights reserved to me alone © </span>
-    </div>
+                <button class="icon-button">
+                    <img class="social-media" src="./assets/redditlogo.png" alt="">
+                </button>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank">
+                <button class="icon-button">
+                    <img class="social-media" src="./assets/facebooklogo.png" alt="">
+                </button>
+            </a>
+            <a href="https://www.reddit.com/" target="_blank">
+                <button class="icon-button">
+                    <img class="social-media" src="./assets/twitterlogo.png" alt="">
+                </button>
+            </a>
+            <span>all rights reserved to me alone © </span>
+        </div>
     </footer>
     <script src="./indexapp.js"></script>
 </body>
