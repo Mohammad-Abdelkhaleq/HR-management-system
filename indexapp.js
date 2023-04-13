@@ -1,7 +1,7 @@
 'use strict'
 
 function Employee(name, deprtment, level, image) {
-    this.ID = 1;
+    this.ID = 0;
     this.name = name;
     this.deprtment = deprtment;
     this.level = level;
@@ -10,6 +10,10 @@ function Employee(name, deprtment, level, image) {
     this.netSalray();
     this.idGenerator();
     this.render();
+    ourEmployees.push(this);
+    savedata(ourEmployees);
+
+
 }
 let ourEmployees = [];
 // #######################################################################################
@@ -41,7 +45,7 @@ Employee.prototype.netSalray = function () {
 
 Employee.prototype.idGenerator = function () {
     this.ID = Math.floor(Math.random() * 10000);
-    ourEmployees.push(this);
+    // ourEmployees.push(this);
 }
 
 
@@ -68,6 +72,8 @@ Employee.prototype.render = function () {
     let theimg = document.createElement("img");
     theimg.src = this.image
     theimg.style.width = "250px"
+    theimg.style.height = "250px"
+    theimg.style.objectFit = "cover"
     box.appendChild(theimg);
 
     let empinfo1 = document.createElement("span");
@@ -83,7 +89,7 @@ Employee.prototype.render = function () {
     box.appendChild(empinfo2);
 
     let empinfo3 = document.createElement("span");
-    empinfo3.textContent=this.salary;
+    empinfo3.textContent = this.salary;
     empinfo3.style.textAlign = "center";
     empinfo3.style.fontSize = "xx-small"
     box.appendChild(empinfo3);
@@ -138,6 +144,90 @@ function infoFunction(event) {
     let empImg = event.target.imageurl.value;
     // console.log(empImg);
     let newemp = new Employee(empName, empDepartment, empLevel, empImg);
+    // newemp.netSalray();
+    // newemp.idGenerator();
+    // newemp.render();
+    // ourEmployees.push(newemp);
+    // savedata(ourEmployees);
 
 }
-console.log(ourEmployees)
+console.log("this is it",ourEmployees)
+
+// ########################################################################################################################################################################################
+// lab 09 :heree i will create a function that will store the data from the form in the local storage (the created object)
+
+function savedata(data) {
+    for (let i = 0; i < data.length; i++) {
+        localStorage.setItem(data[i].name, JSON.stringify(data[i]));
+    }
+}
+
+
+function retEmployee(name, deprtment, level, image,ID,salary) {
+    this.ID = ID;
+    this.name = name;
+    this.deprtment = deprtment;
+    this.level = level;
+    this.image = image;
+    this.salary = salary;
+    this.renderer()
+}
+
+
+retEmployee.prototype.renderer= function(){
+    let box = document.createElement("div");
+    box.style.display = "flex"
+    box.style.flexDirection = "column"
+
+
+    let theimg = document.createElement("img");
+    theimg.src = this.image
+    theimg.style.width = "250px"
+    theimg.style.height = "250px"
+    theimg.style.objectFit = "cover"
+    box.appendChild(theimg);
+
+    let empinfo1 = document.createElement("span");
+    let empInfoNode = document.createTextNode(`Name: ${this.name}-ID: ${this.ID}`);
+    empinfo1.style.textAlign = "center";
+    empinfo1.appendChild(empInfoNode);
+    box.appendChild(empinfo1);
+
+    let empinfo2 = document.createElement("span");
+    empinfo2.textContent = `Deparment: ${this.deprtment}-Level: ${this.level}`;
+    empinfo2.style.textAlign = "center";
+    empinfo2.style.fontSize = "xx-small"
+    box.appendChild(empinfo2);
+
+    let empinfo3 = document.createElement("span");
+    empinfo3.textContent = this.salary;
+    empinfo3.style.textAlign = "center";
+    empinfo3.style.fontSize = "xx-small"
+    box.appendChild(empinfo3);
+
+
+    // let node = document.createTextNode(`employee name:${this.name} net salary =${this.salary}`);
+    // box.appendChild(node);
+    let element = document.getElementById("empCard");
+    element.appendChild(box);
+}
+
+
+
+console.log(Object.keys(localStorage));
+function getData() {
+    let keyArray = Object.keys(localStorage);
+    let retreivedArr = [];
+    if (keyArray !== null) {
+        for (let i = 0; i < keyArray.length; i++) {
+            let retreivedData = JSON.parse(localStorage.getItem(keyArray[i]));
+            retreivedArr.unshift(retreivedData);
+        }
+        // now i am going to do the instantatioan
+        for (let i = 0; i < retreivedArr.length; i++) {
+            new retEmployee(retreivedArr[i].name, retreivedArr[i].deprtment, retreivedArr[i].level, retreivedArr[i].image,retreivedArr[i].ID,retreivedArr[i].salary);
+
+        }
+    }
+}
+getData();
